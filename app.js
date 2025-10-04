@@ -9,9 +9,9 @@ for (let select of dropdowns) {
     let newOption = document.createElement("option");
     newOption.innerText = currCode;
     newOption.value = currCode;
-    if (select.name === "from" && currCode === "USD") {
+    if (select.name === "from" && currCode === "usd") {
       newOption.selected = "selected";
-    } else if (select.name === "to" && currCode === "INR") {
+    } else if (select.name === "to" && currCode === "inr") {
       newOption.selected = "selected";
     }
     select.append(newOption);
@@ -29,11 +29,11 @@ const updateExchangeRate = async () => {
     amtVal = 1;
     amount.value = "1";
   }
-  const URL = `https://api.exchangeratesapi.io/v1/latest?access_key=a08f9fa19d4bab079855231c5d4b51e7`;
+  const URL = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json`;
   let response = await fetch(URL);
   let data = await response.json();
-  let orate = fromCurr.value === data.base ? 1 : data.rates[fromCurr.value];
-  let brate = toCurr.value === data.base ? 1 : data.rates[toCurr.value];
+  let orate = fromCurr.value === data.base ? 1 : data.eur[fromCurr.value];
+  let brate = toCurr.value === data.base ? 1 : data.eur[toCurr.value];
 
   let rate = brate / orate;
 
